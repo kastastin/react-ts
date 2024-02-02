@@ -163,3 +163,48 @@ function literalTypes() {
 		}
 	}
 }
+
+function genericTypes() {
+	type Role = 'admin' | 'user' | 'editor';
+	const roles: Array<Role> = ['admin', 'user'];
+
+	type DataStorage<T> = {
+		storage: T[];
+		add: (data: T) => void;
+	};
+
+	const textStorage: DataStorage<string> = {
+		storage: [],
+		add(data) {
+			this.storage.push(data);
+		},
+	};
+
+	type User = {
+		id: string | number;
+		userName: string;
+		userAge: number;
+		isAdmin: boolean;
+	};
+
+	const userStorage: DataStorage<User> = {
+		storage: [{ id: 123, userName: 'kastastin', userAge: 20, isAdmin: true }],
+		add(data) {
+			this.storage.push(data);
+		},
+	};
+	userStorage.add({ id: 234, userName: 'bob', userAge: 10, isAdmin: false });
+
+	function merge<T, U>(a: T, b: U) {
+		return {
+			...a,
+			...b,
+		};
+	}
+
+	const user = merge<{ name: string }, { age: number }>(
+		{ name: 'kastastin' },
+		{ age: 20 }
+	);
+	console.log(user.name);
+}
