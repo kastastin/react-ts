@@ -91,3 +91,25 @@ function customTypes() {
 		isAdmin: true,
 	};
 }
+
+function interfaces() {
+	interface Credentials {
+		email: string;
+		password: string;
+	}
+
+	const cred: Credentials = {
+		email: 'example@gmail.com',
+		password: 'pass1234',
+	};
+
+	class AuthCredentials implements Credentials {
+		email: string;
+		password: string;
+		userName: string;
+	}
+
+	function login(credentials: Credentials) {}
+
+	login(new AuthCredentials());
+}
