@@ -147,3 +147,19 @@ function mergeInterfaces() {
 		permissions: ['edit', 'delete'],
 	};
 }
+
+function literalTypes() {
+	type Role = 'admin' | 'user' | 'editor';
+
+	let role: Role;
+	role = 'admin';
+	role = 'user';
+	role = 'editor';
+	// role = 'guest'; // Type '"guest"' is not assignable to type '"admin" | "user" | "editor"'
+
+	function performAction(action: string | number, role: Role) {
+		if (role === 'admin' && typeof action === 'string') {
+			// ... run action
+		}
+	}
+}
