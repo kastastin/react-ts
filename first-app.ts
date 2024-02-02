@@ -35,3 +35,12 @@ function objectTypes() {
 	// user = {};
 	// Type '{}' is missing the following properties from type '{ id: string | number; name: string; age: number; isAdmin: boolean; }': id, name, age, isAdmin
 }
+
+function arrayTypes() {
+	let hobbies: Array<string>;
+	// alternative syntax
+	// let hobbies: string[];
+	// let users: { id: string | number; name: string }[];
+
+	hobbies = ['sports', 'cooking', 'reading'];
+}
