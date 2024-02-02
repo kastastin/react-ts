@@ -66,5 +66,28 @@ function functionTypes() {
 	displayResult(calculate(2, 2, add));
 }
 
-functionTypes();
 // npx tsc first-app.ts
+// functionTypes();
+
+function customTypes() {
+	type AddFn = (a: number, b: number) => number;
+	function calculate(a: number, b: number, calcFn: AddFn) {
+		calcFn(a, b);
+	}
+
+	type StrOrNum = string | number;
+	let userId: StrOrNum = 123;
+
+	type User = {
+		id: StrOrNum;
+		userName: string;
+		userAge: number;
+		isAdmin: boolean;
+	};
+	const user: User = {
+		id: 123,
+		userName: 'kastastin',
+		userAge: 20,
+		isAdmin: true,
+	};
+}
