@@ -113,3 +113,37 @@ function interfaces() {
 
 	login(new AuthCredentials());
 }
+
+function mergeTypes() {
+	type Admin = {
+		permissions: string[];
+	};
+
+	type AppUser = {
+		userName: string;
+	};
+
+	type AppAdmin = Admin & AppUser;
+
+	const admin: AppAdmin = {
+		userName: 'kastastin',
+		permissions: ['edit', 'delete'],
+	};
+}
+
+function mergeInterfaces() {
+	interface Admin {
+		permissions: string[];
+	}
+
+	interface AppUser {
+		userName: string;
+	}
+
+	interface AppAdmin extends Admin, AppUser {}
+
+	const admin: AppAdmin = {
+		userName: 'kastastin',
+		permissions: ['edit', 'delete'],
+	};
+}
