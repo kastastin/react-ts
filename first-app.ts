@@ -44,3 +44,27 @@ function arrayTypes() {
 
 	hobbies = ['sports', 'cooking', 'reading'];
 }
+
+function functionTypes() {
+	function displayResult(result: number): void {
+		console.log(result);
+	}
+
+	function add(a: number, b: number) {
+		const result = a + b;
+		return result;
+	}
+
+	function calculate(
+		a: number,
+		b: number,
+		calcFn: (a: number, b: number) => number
+	) {
+		return calcFn(a, b);
+	}
+
+	displayResult(calculate(2, 2, add));
+}
+
+functionTypes();
+// npx tsc first-app.ts
