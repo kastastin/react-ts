@@ -1,15 +1,19 @@
 import { type ComponentPropsWithoutRef } from 'react';
 
-type ButtonProps = {
-	el: 'button';
-} & ComponentPropsWithoutRef<'button'>;
+type ButtonProps = ComponentPropsWithoutRef<'button'> & {
+	href?: never;
+};
 
-type LinkProps = {
-	el: 'link';
-} & ComponentPropsWithoutRef<'a'>;
+type LinkProps = ComponentPropsWithoutRef<'a'> & {
+	href?: string;
+};
+
+function isLinkProps(props: ButtonProps | LinkProps): props is LinkProps {
+	return 'href' in props;
+}
 
 export default function Button(props: ButtonProps | LinkProps) {
-	if (props.el === 'link') {
+	if (isLinkProps(props)) {
 		return <a className='button' {...props}></a>;
 	}
 
