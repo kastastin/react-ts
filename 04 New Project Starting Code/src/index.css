@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Handjet:wght@400;700&display=swap');
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	min-height: 100vh;
+	margin: 0;
+	padding: 0;
+	background: linear-gradient(#c8d8d7, #979e9d);
+	font-family: 'Quicksand', sans-serif;
+}
+
+#root {
+	max-width: 50rem;
+	margin: 2rem auto;
+	padding: 2rem;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+	background: linear-gradient(#35535b, #294a52);
+	color: white;
+}
+
+header {
+	max-width: 40rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0 auto;
+}
+
+ul {
+	max-width: 40rem;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(18rem, 10rem));
+	gap: 2rem;
+	margin: 2rem auto;
+	padding: 0;
+	font-family: 'Handjet', sans-serif;
+	list-style: none;
+}
+
+ul li {
+	padding: 1rem;
+	border-radius: 6px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	background: linear-gradient(#46585d, #223338);
+	color: #76bbcf;
+}
+
+ul h2 {
+	margin: 0;
+	font-size: 2rem;
+	text-align: center;
+}
+
+ul p {
+	color: #9fc3cd;
+	font-size: 1.25rem;
+	text-align: center;
+}
+
+ul progress {
+	width: 100%;
+	height: 1rem;
+	margin: 1rem 0;
+	border-radius: 6px;
+}
+
+ul progress::-webkit-progress-bar {
+	background: #a5e5da;
+	border-radius: 6px;
+}
+
+ul progress::-webkit-progress-value {
+	border-radius: 6px;
+	background: #4562f3;
+}
+
+label {
+	display: block;
+	margin-bottom: 0.35rem;
+	color: #bbe3dd;
+	font-size: 0.85rem;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+input {
+	width: 100%;
+	display: block;
+	margin-bottom: 1rem;
+	padding: 0.5rem;
+	border: 1px solid #486560;
+	border-radius: 6px;
+	background-color: #daedea;
+	font: inherit;
+	color: #07302a;
+	font-size: 1rem;
+}
+
+.button {
+	padding: 0.5rem;
+	border: 1px solid #338196;
+	border-radius: 4px;
+	background-color: #338196;
+	font: inherit;
+	color: white;
+	cursor: pointer;
+}
+
+.button:hover,
+.button:active {
+	border-color: #217086;
+	background-color: #217086;
+}
+
+#add-timer {
+	max-width: 20rem;
+	margin: 3rem auto;
+	text-align: center;
+}
