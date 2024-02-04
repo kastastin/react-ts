@@ -4,7 +4,7 @@ import Header from './components/Header.tsx';
 import CourseGoalList from './components/CourseGoalList.tsx';
 import goalsImg from './assets/goals.jpg';
 
-type CourseGoal = {
+export type CourseGoal = {
 	id: number;
 	title: string;
 	description: string;
@@ -25,6 +25,10 @@ export default function App() {
 		});
 	}
 
+	function handleDeleteGoal(id: number) {
+		setGoals((prevGoals) => prevGoals.filter((goal) => goal.id !== id));
+	}
+
 	return (
 		<main>
 			<Header image={{ src: goalsImg, alt: 'A list of goals' }}>
@@ -33,7 +37,7 @@ export default function App() {
 
 			<button onClick={handleAddGoal}>Add Goal</button>
 
-			<CourseGoalList goals={goals} />
+			<CourseGoalList goals={goals} onDeleteGoal={handleDeleteGoal} />
 		</main>
 	);
 }
