@@ -1,4 +1,4 @@
-import { createContext, useContext, type ReactNode } from 'react';
+import { createContext, useContext, useReducer, type ReactNode } from 'react';
 
 type Timer = {
 	name: string;
@@ -10,10 +10,15 @@ type TimersState = {
 	timers: Timer[];
 };
 
+const initialState: TimersState = {
+	isRunning: true,
+	timers: [],
+};
+
 type TimersContextValue = TimersState & {
 	addTimer: (timerData: Timer) => void;
-	startTimer: () => void;
-	stopTimer: () => void;
+	startTimers: () => void;
+	stopTimers: () => void;
 };
 
 const TimersContext = createContext<TimersContextValue | null>(null);
@@ -32,20 +37,68 @@ type TimersContextProviderProps = {
 	children: ReactNode;
 };
 
+type AddTimerAction = {
+	type: 'ADD_TIMER';
+	payload: Timer;
+};
+
+type StartTimersAction = {
+	type: 'START_TIMERS';
+};
+
+type StopTimersAction = {
+	type: 'STOP_TIMERS';
+};
+
+type Action = AddTimerAction | StartTimersAction | StopTimersAction;
+
+function timersReducer(state: TimersState, action: Action): TimersState {
+	if (action.type === 'ADD_TIMER') {
+		return {
+			...state,
+			timers: [
+				...state.timers,
+				{
+					name: action.payload.name,
+					duration: action.payload.duration,
+				},
+			],
+		};
+	}
+
+	if (action.type === 'START_TIMERS') {
+		return {
+			...state,
+			isRunning: true,
+		};
+	}
+
+	if (action.type === 'STOP_TIMERS') {
+		return {
+			...state,
+			isRunning: false,
+		};
+	}
+
+	return state;
+}
+
 export default function TimersContextProvider({
 	children,
 }: TimersContextProviderProps) {
+	const [timersState, dispatch] = useReducer(timersReducer, initialState);
+
 	const ctx: TimersContextValue = {
-		timers: [],
-		isRunning: false,
+		timers: timersState.timers,
+		isRunning: timersState.isRunning,
 		addTimer(timerData) {
-			// ...
+			dispatch({ type: 'ADD_TIMER', payload: timerData });
 		},
-		startTimer() {
-			// ...
+		startTimers() {
+			dispatch({ type: 'START_TIMERS' });
 		},
-		stopTimer() {
-			// ...
+		stopTimers() {
+			dispatch({ type: 'STOP_TIMERS' });
 		},
 	};
 
