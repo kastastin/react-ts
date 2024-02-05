@@ -1,9 +1,9 @@
 import { useRef } from 'react';
 
-import Form, { type FormHandle } from './UI/Form';
-import Input from './UI/Input';
-import Button from './UI/Button';
-import { useTimersContext } from '../store/timers-context';
+import Form, { type FormHandle } from './UI/Form.tsx';
+import Input from './UI/Input.tsx';
+import Button from './UI/Button.tsx';
+import { useTimersContext } from '../store/timers-context.tsx';
 
 export default function AddTimer() {
 	const form = useRef<FormHandle>(null);
